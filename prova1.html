@@ -2,6 +2,8 @@
   <body>
     <h5 id="pruebas"></h5>
     <h3 id="campodeminas"></h3>
+    <h3 id="tablademultiplicar"></h3>
+    <h3 id="taulaaleatoria"></h3>
   </body>
   <script type="text/javascript">
     function promtNombre() {
@@ -16,19 +18,20 @@
     }
 
     function contandoMinas() {
-
       campodeminas = [
-        [0, 0, -1, 0], 
+        [0, 0, -1, 0],
         [0, -1, 0, 0],
         [0, -1, 0, -1],
         [0, 0, 0, 0],
-        [0, 0, 0, -1]
-      ] 
-        var row = campodeminas.length; //filas del array
-        var column = campodeminas[0].length; //columnas del array 
+        [0, 0, 0, -1],
+      ];
+      var row = campodeminas.length; //filas del array
+      var column = campodeminas[0].length; //columnas del array
 
-        document.write("Campo de minas de " + row + " filas y de " + column + " columnas <br>");
-      
+      document.write(
+        "Campo de minas de " + row + " filas y de " + column + " columnas <br>"
+      );
+
       for (i = 0; i < row; i++) {
         for (j = 0; j < column; j++) {
           document.write(campodeminas[i][j]);
@@ -37,90 +40,158 @@
       }
 
       document.write("<br>");
-      minasencontradas = []; 
-      var contandominas = 1; 
+      minasencontradas = [];
+      var contandominas = 1;
 
       for (i = 0; i < row; i++) {
         for (j = 0; j < column; j++) {
+          if (campodeminas[i - 1][j - 1] == -1) {
+            //comprueba la casilla superior izquierda
+            minasencontradas[i][j]++;
+          }
+          if (campodeminas[i - 1][j] == -1) {
+            //comprueba la casilla superior
+            minasencontradas[i][j]++;
+          }
+          if (campodeminas[i][j + 1] == -1) {
+            //comprueba la casilla superior derecha
+            minasencontradas[i][j]++;
+          }
+          document.write("<br>");
+        }
+      }
 
-          if(campodeminas[i-1][j-1] == -1){ //comprueba la casilla superior izquierda 
-            minasencontradas[i][j]++; 
-          }
-          if(campodeminas[i-1][j] == -1){ //comprueba la casilla superior
-            minasencontradas[i][j]++; 
-          }
-          if (campodeminas[i][j+1] == -1) { //comprueba la casilla superior derecha
-            minasencontradas[i][j]++; 
-          }
-        document.write("<br>");
+      function dibujarAsteriscosA() {
+        for (var i = 0; i < 10; i++) {
+          document.getElementById("pruebas").innerHTML +=
+            "<br>" + "************";
+        }
+      }
+
+      function dibujarAsteriscosC() {
+        var piramide = [
+          "*",
+          "**",
+          "***",
+          "****",
+          "*****",
+          "******",
+          "*******",
+          "*********",
+        ];
+
+        for (asterisco in piramide) {
+          document.getElementById("pruebas").innerHTML +=
+            piramide[asterisco] + "<br>";
+        }
       }
     }
 
-    function dibujarAsteriscosA() {
-      for (var i = 0; i < 10; i++) {
-        document.getElementById("pruebas").innerHTML += "<br>" + "************";
+    //Taula de multiplicar. Fes un programa Javascript que pregunti un nombre (window.prompt) i mostri la taula de multiplicar d'aquell nombre.
+    function tauladeMultiplicar() {
+      var numero = prompt("Introduce un numero"); // 2
+      document.write("Tabla del " + numero);
+      for (var x = 1; x < 10; x++) {
+        //1, 2 , 3, 4 , 5 , 6, 7
+        var resultado = numero * x;
+        document.getElementById("tablademultiplicar").innerHTML +=
+          numero + "x" + x + " = " + resultado + "<br>";
       }
     }
+    /*
+    *Taula html. Fes un programa javascript que mostri una taula en codi html amb el nombre de files i  columes preguntades a l'usuari mitjançant la funció (window.prompt).
+    Mostra dins de cada cel·la de la taula un nombre aleatori entre el 0 i el 99 (Math.floor(Math.random()*100)).
+    */
 
-    function dibujarAsteriscosC() {
-      var piramide = [
-        "*",
-        "**",
-        "***",
-        "****",
-        "*****",
-        "******",
-        "*******",
-        "*********",
-      ];
+    function taulaAleatoria() {
 
-      for (asterisco in piramide) {
-        document.getElementById("pruebas").innerHTML += piramide[asterisco] + "<br>";
-      }
+      var number = prompt("Introduce el numero de filas"); //x
+      var numberofcols = prompt("Introduce el numero de columnas");
+      var rows = parseInt(number); 
+      var cols = parseInt(numberofcols); 
+     
+      let taulaAleatoria = new Array(rows); //filas introducidas por el usuario
+      var columnas = taulaAleatoria[0].length; //columnas del array
+
+      document.write("Numero de filas " + taulaAleatoria.length);
+      document.write(columnas);
+      
+      //document.getElementById("taulaaleatoria").innerHTML += rows + "<br>";
+      //var cols = prompt("Introduce el numero de columnas"); //y
+
+      /*
+        for (i = 0; i < rows; i++) {
+          for (j = 0; j < cols; j++) {
+            document.write(taulaAleatoria[i][j]);
+          }
+          document.write("<br>");
+        }
+        */
     }
-  } 
-    contandoMinas();
-    dibujarAsteriscosA();
+
+
+    /*
+    Excercici 3 
+    Fes un programa que demani una quantitat de diners (en euros) i el desglosi en billets de 500, 200, 100, 50, 20, 10 i 5 Euros intentant donar el mínim nombre de bitllets.
+    */
+
+    function retonarBitllets () {
+      var number = prompt("Introduce una cantidad de dinero"); //ejemplo 250 //multiple de 5 %5 
+      var quantitat = parseInt(number); 
+      document.write("Dinero introducido: " + quantitat + "<br>"); 
+      
+      //dividir la cantidad en billetes mas pequeños
+      //dar la menos cantidad de billetes posible 
+
+      var division = quantitat / 5; 
+      document.write(division); 
+    }
+
+    retonarBitllets(); 
+    //taulaAleatoria();
+    //tauladeMultiplicar();
+    //contandoMinas();
+    //dibujarAsteriscosA();
     //dibujarAsteriscosC();
 
     //Exercisis NF1 - Arquitectures i tecnologies Web
     /*
-   //1.- El usuario debe introducir su nombre y apellidos, en este orden. (Prompt)
-   //2.- Una vez hecho esto, se debe mostrar un cuadro de diálogo con el siguiente mensaje: ¿Es usted Apellidos, Nombre? (confirm)
-   //3.- Si se da aceptar, muestre mensaje "has aceptado", sino "No has aceptado"
+     //1.- El usuario debe introducir su nombre y apellidos, en este orden. (Prompt)
+     //2.- Una vez hecho esto, se debe mostrar un cuadro de diálogo con el siguiente mensaje: ¿Es usted Apellidos, Nombre? (confirm)
+     //3.- Si se da aceptar, muestre mensaje "has aceptado", sino "No has aceptado"
 
-      for (var i = 10; i <=totalNumberofRows; i--) {
-        arr = []; 
+        for (var i = 10; i <=totalNumberofRows; i--) {
+          arr = [];
 
-        for (var j = 10; j <= 10; j--) {
-          arr.push("*");  
+          for (var j = 10; j <= 10; j--) {
+            arr.push("*");
+          }
+          console.log(arr.join(" " + "/n"));
         }
-        console.log(arr.join(" " + "/n")); 
-      }
-  */
+    */
 
     //Exercisis NF2 - Sintaxi Javascript
 
     /*
-  Realitza una aplicació web que rebi en codi mitjançant una matriu bidimensional (de longitud variable) 
-  un escenari de Buscamines, 
-  on hi hagi un 0 on no hi ha mines, 
-  i un -1 on si n'hi ha. 
-  Per a cada casella que no tingui una mina, digui quantes mines adjacents hi ha (en diagonal, horitzontal i vertical). 
-  Internament el programa realitzarà les accions amb una funció definida com function contandoMinas (miCampo) que retornarà un array bidimensional amb el nombre de mines adjacents a cada posició. 
-  
-  var arrayX = [1, 2, 3, 4, 5, 6];
-  var arrayY = [0, 1, 0, 1, 0, 1];
+    Realitza una aplicació web que rebi en codi mitjançant una matriu bidimensional (de longitud variable)
+    un escenari de Buscamines,
+    on hi hagi un 0 on no hi ha mines,
+    i un -1 on si n'hi ha.
+    Per a cada casella que no tingui una mina, digui quantes mines adjacents hi ha (en diagonal, horitzontal i vertical).
+    Internament el programa realitzarà les accions amb una funció definida com function contandoMinas (miCampo) que retornarà un array bidimensional amb el nombre de mines adjacents a cada posició.
 
-    function contandoMinas(array) {
-      for (x in array) {
-        alert(array[x]); //1 2 3 4 5 6
+    var arrayX = [1, 2, 3, 4, 5, 6];
+    var arrayY = [0, 1, 0, 1, 0, 1];
+
+      function contandoMinas(array) {
+        for (x in array) {
+          alert(array[x]); //1 2 3 4 5 6
+        }
       }
-    }
 
-    function pintarAsteriscos() {
-      for (i = 0; i < 10; i++) {}
-    }  
-  */
+      function pintarAsteriscos() {
+        for (i = 0; i < 10; i++) {}
+      }
+    */
   </script>
 </html>
