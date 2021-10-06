@@ -1,0 +1,80 @@
+<html>
+  <body>
+    <h4 id="pruebas"></h4>
+    <h3 id="campodeminas"></h3>
+    <h3 id="tablademultiplicar"></h3>
+    <h3 id="taulaaleatoria"></h3>
+  </body>
+  <script type="text/javascript">
+    function dibujarAsteriscosA() {
+      var filasprompt = window.prompt("Numero de filas");
+      var filas = parseInt(filasprompt);
+
+      for (var i = 0; i < filas; i++) {
+        document.write("**********<br>");
+      }
+    }
+
+    //dibujarAsteriscosA();
+
+    function dibujarAsteriscosB() {
+      var filasprompt = window.prompt("Numero de filas");
+      var filas = parseInt(filasprompt);
+      document.write("<br>");
+      for (var i = 0; i <= filas; i++) {
+        if (i == 0) {
+          document.write("*********<br>");
+        }
+        if (i == filas) {
+          document.write("*********<br>");
+        } else {
+          document.write(
+            "*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>"
+          );
+        }
+      }
+      document.write("<br>");
+    }
+
+    //dibujarAsteriscosB();
+
+    function dibujarAsteriscosC() {
+      var piramide = [
+        "*",
+        "**",
+        "***",
+        "****",
+        "*****",
+        "******",
+        "*******",
+        "*********",
+      ];
+
+      for (asterisco in piramide) {
+        document.getElementById("pruebas").innerHTML +=
+          piramide[asterisco] + "<br>";
+      }
+    }
+
+    //dibujarAsteriscosC();
+
+    //piramide inversaj<i
+    function D() {
+
+      var filasprompt = window.prompt("Numero de filas para figura D");
+      var filas = parseInt(filasprompt);
+
+      for (var i = 0; i < filas; i++) {
+        for (var j = 0; j < filas; j++) {
+          if (j < i) {
+            document.write("&nbsp;");
+          } else {
+            document.write("*");
+          }
+        } document.write("<br>");
+      }
+    }
+
+    D();
+  </script>
+</html>
