@@ -4,6 +4,7 @@
     <h3 id="campodeminas"></h3>
     <h3 id="tablademultiplicar"></h3>
     <h3 id="taulaaleatoria"></h3>
+    <p style="font-family: monospace; font-size: 20;"></p>
   </body>
   <script type="text/javascript">
     function dibujarAsteriscosA() {
@@ -38,29 +39,25 @@
 
     //dibujarAsteriscosB();
 
-    function dibujarAsteriscosC() {
-      var piramide = [
-        "*",
-        "**",
-        "***",
-        "****",
-        "*****",
-        "******",
-        "*******",
-        "*********",
-      ];
+    function C() {
+      var filasprompt = window.prompt("Numero de filas para figura C");
+      var filas = parseInt(filasprompt);
 
-      for (asterisco in piramide) {
-        document.getElementById("pruebas").innerHTML +=
-          piramide[asterisco] + "<br>";
+      for (var i = 0; i < filas; i++) {
+        for (var j = 0; j < filas; j++) {
+          if (j > i) {
+            document.write("&nbsp;");
+          } else {
+            document.write("*");
+          }
+        }
+        document.write("<br>");
       }
     }
 
-    //dibujarAsteriscosC();
+    //C();
 
-    //piramide inversaj<i
     function D() {
-
       var filasprompt = window.prompt("Numero de filas para figura D");
       var filas = parseInt(filasprompt);
 
@@ -71,10 +68,77 @@
           } else {
             document.write("*");
           }
-        } document.write("<br>");
+        }
+        document.write("<br>");
       }
     }
 
-    D();
+    //D();
+
+    function E() {
+      var filasprompt = window.prompt("Numero de filas para figura E");
+      var filas = parseInt(filasprompt);
+
+      for (var i = 0; i < filas; i++) {
+        for (var j = 0; j < filas; j++) {
+          if (j > i) {
+            document.write("&nbsp");
+          } else {
+            document.write("*");
+          }
+        }
+        document.write("<br>");
+      }
+    }
+
+    //E();
+
+    function F() {
+      //modificar j - i
+      var filasprompt = window.prompt("Numero de filas para figura E");
+      var filas = parseInt(filasprompt);
+
+      for (var i = 0; i < filas; i++) {
+        for (var j = 0; j < filas; j++) {
+          if (j > i) {
+            document.write("&nbsp");
+          } else {
+            document.write("*");
+          }
+        }
+        document.write("<br>");
+      }
+    }
+
+    //F();
+
+    function volca() {
+      
+      for (var i = 0; i <= 6; i++) { //1/2/3/4/5/6
+        //document.write(i);
+        potencia = 2**i; //elevado a 2 //2,4,8,16,32,64
+        document.write(potencia + "<br>");
+
+        if(potencia%2==0){ //si la potencia es 2, 4, 8, 16, 32, dibuja i salta linea 
+          document.write("*"); 
+        }
+
+        /*for(var x = 0; x<=64; x++){
+          potencia = potencia**i; //elevar a 2, 4, 6, 8 ... 2ª6  
+          document.write(potencia)
+        }  
+
+        for (var x = 0; x <= 64; x++) {
+        var i = 1; 
+
+        if(x%2==0){ //multiplos de 2 
+          document.write(x + "<br>");
+        }
+      }
+        */
+      }
+    }
+
+    volca();
   </script>
 </html>
