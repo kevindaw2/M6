@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+
+  <body onload="checkCookie()">
+    <h1>This is a Heading</h1>
+
+    <!--PRUEBAS-->
+    <div>
+      <h5 id="pruebas"></h5>
+    </div>
+    <!--PRUEBAS-->
+
+    <div
+      style="width: 150px; height: 60px; border: thin solid silver"
+      onmouseover="ressalta(this)"
+      onmouseout="ressalta(this)"
+    ></div>
+
+    <input type="button" value="Obtenir mesures" onclick="mostraMissatge()" />
+
+    <input type="button" value="Tancar finestra" onclick="window.close()" />
+    <!--window .close() directamente-->
+
+    <input
+      type="button"
+      value="Obtenir Location "
+      onclick="obtenirLocation()"
+    />
+
+    <input
+      type="button"
+      value="Obrir nou document"
+      onclick="obrirNouDocument()"
+    />
+
+    <input type="button" value="Cookies" onclick="setCookie()" />
+
+    <p>This is a paragraph.</p>
+
+    <script type="text/javascript">
+      /*
+    document.getElementById("pruebas").innerHTML +=  "<br>" + "************"; 
+    */
+      function mostraMissatge() {
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+        alert("Les mesures son, heigth: " + height + " width: " + width);
+      }
+
+      function obtenirLocation() {
+        alert("Location: " + window.location);
+      }
+
+      function obrirNouDocument() {
+        location.assign("https://www.google.com/");
+      }
+
+      function setCookie(cname) {
+        document.cookie = cname + ";path=/";
+      }
+
+      function deleteCookie() {
+        document.cookie = "username=" +";path=/";
+      }
+
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        //document.write(decodedCookie); //username=keff
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+
+      function checkCookie() {
+        let user = getCookie("username");
+        if (user != "") {
+          alert("Welcome again " + user);
+          document.getElementById("pruebas").innerHTML += "Welcome " + user;
+        } else {
+          user = prompt("Introdueix el teu nom:", "");
+          if (user != "" && user != null) {
+            setCookie("username");
+          }
+        }
+      }
+
+      function ressalta(element) {
+        switch (element.style.borderColor) {
+          case "silver":
+          case "silver silver silver silver":
+          case "#c0c0c0":
+            element.style.borderColor = "black";
+            break;
+          case "black":
+          case "black black black black":
+          case "#000000":
+            element.style.borderColor = "silver";
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
