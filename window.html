@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <title>Window</title>
+  </head>
+  <body>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <div id="clock">
+      <p id="temporizador"></p>
+      <button type="button" onclick="closeWindow()">close window</button>
+      <button type="button" onclick="openWindow()">open window</button>
+      <button type="button" onclick="rotateWindow()">rotate window</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+    //GLOBAL VARS
+
+    var myWindow;
+
+    function openWindow() {
+      myWindow = window.open(
+        "https://www.w3schools.com",
+        "",
+        "width=450, height=350"
+      );
+
+      myWindow.moveTo(500, 100); // Moves the new window x,y
+      myWindow.focus();
+    }
+
+    var x = 500;
+    var y = 100;
+
+    var ejeX = (x += x);
+    var ejeY = (y += y);
+
+    function rotateWindow() {
+
+    //abrir ventana y moverla         
+
+      for (var i = 0; i < 6; i++) {
+
+      myWindow = window.open(
+        "https://www.w3schools.com",
+        "",
+        "width=450, height=350"
+      );
+
+        myWindow.moveTo(500, 100);
+        myWindow.moveTo(3500, 200);
+        myWindow.moveTo(1500, 300);
+        myWindow.focus();
+      }
+    }
+
+    setInterval(openWindow, 1000); //cada x tiempo abre una ventana en una nueva posicion
+
+    /*
+    window -> open, resize, resizeTo, resizeBy, moveBy, moveTo
+    conseguir que una ventana se mueva alrededor de la pantalla
+    */
+
+    for (var i = 10; i >= 1; i--) {
+      document.getElementById("temporizador").innerText = i;
+    }
+
+    function closeWindow() {
+      window.close();
+    }
+
+    setInterval(closeWindow, 100000);
+  </script>
+</html>
