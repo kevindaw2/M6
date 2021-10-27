@@ -1,0 +1,236 @@
+<html>
+  <body>
+    <h5 id="pruebas"></h5>
+    <h3 id="campodeminas"></h3>
+    <h3 id="tablademultiplicar"></h3>
+    <h3 id="taulaaleatoria"></h3>
+  </body>
+  <script type="text/javascript">
+    function promtNombre() {
+      var signIn = prompt("Introduce tu nombre y apellidos");
+      var confirmacion = confirm("Es usted " + signIn);
+
+      if (confirmacion) {
+        alert("Has aceptado");
+      } else {
+        alert("No has aceptado ");
+      }
+    }
+
+    function contandoMinas() {
+      campodeminas = [
+        [0, 0, -1, 0],
+        [0, -1, 0, 0],
+        [0, -1, 0, -1],
+        [0, 0, 0, 0],
+        [0, 0, 0, -1],
+      ];
+      var row = campodeminas.length; //filas del array
+      var column = campodeminas[0].length; //columnas del array
+
+      document.write(
+        "Campo de minas de " + row + " filas y de " + column + " columnas <br>"
+      );
+
+      for (i = 0; i < row; i++) {
+        for (j = 0; j < column; j++) {
+          document.write(campodeminas[i][j]);
+        }
+        document.write("<br>");
+      }
+
+      document.write("<br>");
+      minasencontradas = [];
+      var contandominas = 1;
+
+      for (i = 0; i < row; i++) {
+        for (j = 0; j < column; j++) {
+          if (campodeminas[i - 1][j - 1] == -1) {
+            //comprueba la casilla superior izquierda
+            minasencontradas[i][j]++;
+          }
+          if (campodeminas[i - 1][j] == -1) {
+            //comprueba la casilla superior
+            minasencontradas[i][j]++;
+          }
+          if (campodeminas[i][j + 1] == -1) {
+            //comprueba la casilla superior derecha
+            minasencontradas[i][j]++;
+          }
+          document.write("<br>");
+        }
+      }
+
+      function dibujarAsteriscosA() {
+        for (var i = 0; i < 10; i++) {
+          document.getElementById("pruebas").innerHTML += "<br>" + "************";
+        }
+      }
+
+      function dibujarAsteriscosC() {
+        var piramide = [
+          "*",
+          "**",
+          "***",
+          "****",
+          "*****",
+          "******",
+          "*******",
+          "*********",
+        ];
+
+        for (asterisco in piramide) {
+          document.getElementById("pruebas").innerHTML +=
+            piramide[asterisco] + "<br>";
+        }
+      }
+    }
+
+    /*
+    Exercici 1
+    Taula de multiplicar. Fes un programa Javascript que pregunti un nombre (window.prompt) i mostri la taula de multiplicar d'aquell nombre.
+    */
+
+    function tauladeMultiplicar() {
+      var numero = prompt("Introduce un numero"); // 2
+      document.write("Tabla del " + numero);
+      for (var x = 1; x < 10; x++) {
+        //1, 2 , 3, 4 , 5 , 6, 7
+        var resultado = numero * x;
+        document.getElementById("tablademultiplicar").innerHTML +=
+          numero + "x" + x + " = " + resultado + "<br>";
+      }
+    }
+
+    /*
+    Excercici 2
+    *Taula html. Fes un programa javascript que mostri una taula en codi html amb el nombre de files i  columes preguntades a l'usuari mitjançant la funció (window.prompt).
+    Mostra dins de cada cel·la de la taula un nombre aleatori entre el 0 i el 99 (Math.floor(Math.random()*100)).
+    */
+
+    function taulaAleatoria() {
+      var array = [];
+
+      for (var i = 0; i < 10; i++) {
+        //crea 10 filas
+        document.write("[");
+        for (var j = 0; j < 10; j++) {
+          var random = Math.floor(Math.random() * 100);
+          array[j] = [random]; //entra en cada columna i crea un numero aleatorio
+          document.write("{" + array[j] + "}");
+        }
+        document.write("]");
+        document.write("<br>");
+      }
+
+      console.log(array);
+    }
+
+    /*
+    Excercici 3 
+    Fes un programa que demani una quantitat de diners (en euros) i el desglosi en billets de 500, 200, 100, 50, 20, 10 i 5 Euros intentant donar el mínim nombre de bitllets.
+    */
+
+    function retonarBitllets() {
+      var number = prompt("Introduce una cantidad de dinero"); //ejemplo 250 //multiple de 5 %5
+      var quantitat = parseInt(number);
+      var resultado = 0;
+      document.write("Dinero introducido: " + quantitat + "<br>");
+
+      resultado = quantitat/500; //numero de billetes de 500
+      document.write(500); 
+      /*
+      Si da 1000, lo optimo seria devolver 2 de 500 
+      bitllets de 500
+      bitllets de 200
+
+      1comprobar si es multiplo
+
+      si lo es (else)
+      divide por 500
+      divide por 200
+      divide por 100
+      divide por 50
+      divide por 20
+      etc...
+
+      billetes 500 = quantitat /500 
+      quantitat = quantitat - billetes de 50*50; 
+
+      */
+
+      resultado = quantitat / 2;
+      document.write(resultado);
+
+      var n = 0;
+
+      /*
+ while ((quantitat%2)==0) { //mientras la division no sea exacta y diferente a 0
+        resultado = quantitat/5; //divide el resultado x veces 
+        document.write("resultado" + resultado);
+      }
+
+      if(quantitat%2 == 0) {
+        resultado = quantitat/2;
+        document.write(resultado);
+        if(resultado%2 == 0){
+          resto = resultado/2; 
+          if(resto%2 == 0){
+            var aprox = resto%2; 
+            document.write(aprox);
+          }
+        }
+      }
+      
+      
+      */
+    }
+
+    //retonarBitllets();
+    taulaAleatoria();
+    //tauladeMultiplicar();
+    //contandoMinas();
+    //dibujarAsteriscosA();
+    //dibujarAsteriscosC();
+
+    //Exercisis NF1 - Arquitectures i tecnologies Web
+    /*
+     //1.- El usuario debe introducir su nombre y apellidos, en este orden. (Prompt)
+     //2.- Una vez hecho esto, se debe mostrar un cuadro de diálogo con el siguiente mensaje: ¿Es usted Apellidos, Nombre? (confirm)
+     //3.- Si se da aceptar, muestre mensaje "has aceptado", sino "No has aceptado"
+
+        for (var i = 10; i <=totalNumberofRows; i--) {
+          arr = [];
+
+          for (var j = 10; j <= 10; j--) {
+            arr.push("*");
+          }
+          console.log(arr.join(" " + "/n"));
+        }
+    */
+
+    //Exercisis NF2 - Sintaxi Javascript
+
+    /*
+    Realitza una aplicació web que rebi en codi mitjançant una matriu bidimensional (de longitud variable)
+    un escenari de Buscamines,
+    on hi hagi un 0 on no hi ha mines,
+    i un -1 on si n'hi ha.
+    Per a cada casella que no tingui una mina, digui quantes mines adjacents hi ha (en diagonal, horitzontal i vertical).
+    Internament el programa realitzarà les accions amb una funció definida com function contandoMinas (miCampo) que retornarà un array bidimensional amb el nombre de mines adjacents a cada posició.
+
+    var arrayX = [1, 2, 3, 4, 5, 6];
+    var arrayY = [0, 1, 0, 1, 0, 1];
+
+      function contandoMinas(array) {
+        for (x in array) {
+          alert(array[x]); //1 2 3 4 5 6
+        }
+      }
+
+      function pintarAsteriscos() {
+        for (i = 0; i < 10; i++) {}
+      }
+    */
+  </script>
+</html>

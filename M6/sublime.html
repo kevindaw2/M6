@@ -1,0 +1,56 @@
+<html>
+  <script type="text/javascript">
+    //Exercisis NF1 - Arquitectures i tecnologies Web
+    /*
+   //1.- El usuario debe introducir su nombre y apellidos, en este orden. (Prompt)
+   //2.- Una vez hecho esto, se debe mostrar un cuadro de diálogo con el siguiente mensaje: ¿Es usted Apellidos, Nombre? (confirm)
+   //3.- Si se da aceptar, muestre mensaje "has aceptado", sino "No has aceptado"
+
+    var signIn = prompt("Introduce tu nombre y apellidos");
+    var confirmacion = confirm("Es usted " + signIn);
+
+    if (confirmacion) {
+      alert("Has aceptado");
+    } else {
+      alert("No has aceptado ");
+    }
+  */
+
+    //Exercisis NF2 - Sintaxi Javascript
+    /*
+  Realitza una aplicació web que rebi en codi mitjançant una matriu bidimensional (de longitud variable) 
+  un escenari de Buscamines, 
+  on hi hagi un 0 on no hi ha mines, 
+  i un -1 on si n'hi ha. 
+  Per a cada casella que no tingui una mina, digui quantes mines adjacents hi ha (en diagonal, horitzontal i vertical). 
+  Internament el programa realitzarà les accions amb una funció definida com function contandoMinas (miCampo) que retornarà un array bidimensional amb el nombre de mines adjacents a cada posició. 
+  */
+
+    var arrayX = [1, 2, 3, 4, 5, 6];
+    var arrayY = [0, 1, 0, 1, 0, 1];
+
+    function contandoMinas(array) {
+      for (x in array) {
+        alert(array[x]); //1 2 3 4 5 6
+      }
+    }
+
+    function pintarAsteriscos() {
+      for (i = 0; i < 10; i++) {}
+    }
+
+    function generatePyramid() {
+      var totalNumberofRows = 5,
+        arr;
+      for (var i = 1; i <= totalNumberofRows; i++) {
+        arr = [];
+        for (var j = 1; j <= i; j++) {
+          arr.Push(j);
+        }
+        console.log(arr.join(" ") + "\n");
+      }
+    }
+
+    generatePyramid(); 
+  </script>
+</html>

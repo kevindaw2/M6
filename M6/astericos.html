@@ -1,0 +1,242 @@
+<html>
+
+<body>
+  <h4 id="pruebas"></h4>
+  <h3 id="campodeminas"></h3>
+  <h3 id="tablademultiplicar"></h3>
+  <h3 id="taulaaleatoria"></h3>
+  <p style="font-family: monospace; font-size: 20"></p>
+</body>
+<script type="text/javascript">
+  function dibujarAsteriscosA() {
+    var filasprompt = window.prompt("Numero de filas");
+    var filas = parseInt(filasprompt);
+
+    for (var i = 0; i < filas; i++) {
+      document.write("**********<br>");
+    }
+  }
+
+  //dibujarAsteriscosA();
+
+  function dibujarAsteriscosB() {
+    var filasprompt = window.prompt("Numero de filas");
+    var filas = parseInt(filasprompt);
+    document.write("<br>");
+    for (var i = 0; i <= filas; i++) {
+      if (i == 0) {
+        document.write("*********<br>");
+      }
+      if (i == filas) {
+        document.write("*********<br>");
+      } else {
+        document.write(
+          "*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>"
+        );
+      }
+    }
+    document.write("<br>");
+  }
+
+  //dibujarAsteriscosB();
+
+  function C() {
+    var filasprompt = window.prompt("Numero de filas para figura C");
+    var filas = parseInt(filasprompt);
+
+    for (var i = 0; i < filas; i++) {
+      for (var j = 0; j < filas; j++) {
+        if (j > i) {
+          document.write("&nbsp;");
+        } else {
+          document.write("*");
+        }
+      }
+      document.write("<br>");
+    }
+  }
+
+  //C();
+
+  function D() {
+    var filasprompt = window.prompt("Numero de filas para figura D");
+    var filas = parseInt(filasprompt);
+
+    for (var i = 0; i < filas; i++) {
+      for (var j = 0; j < filas; j++) {
+        if (j < i) {
+          document.write("&nbsp;");
+        } else {
+          document.write("*");
+        }
+      }
+      document.write("<br>");
+    }
+  }
+
+  //D();
+
+  function E() {
+    var filasprompt = window.prompt("Numero de filas para figura E");
+    var filas = parseInt(filasprompt);
+
+    for (var i = 0; i < filas; i++) {
+      for (var j = 0; j < filas; j++) {
+        if (j > i) {
+          document.write("&nbsp");
+        } else {
+          document.write("*");
+        }
+      }
+      document.write("<br>");
+    }
+  }
+
+  //E();
+
+  function F() {
+    //modificar j - i
+    var filasprompt = window.prompt("Numero de filas para figura E");
+    var filas = parseInt(filasprompt);
+
+    for (var i = 0; i < filas; i++) {
+      for (var j = 0; j < filas; j++) {
+        if (j > i) {
+          document.write("&nbsp");
+        } else {
+          document.write("*");
+        }
+      }
+      document.write("<br>");
+    }
+  }
+
+  //F();
+
+  function volca() {
+    for (var i = 0; i <= 6; i++) {
+      //1/2/3/4/5/6
+      //document.write(i);
+      potencia = 2 ** i; //elevado a 2 //2,4,8,16,32,64
+      document.write(potencia + "<br>");
+
+      if (potencia % 2 == 0) {
+        //si la potencia es 2, 4, 8, 16, 32, dibuja i salta linea
+        document.write("*");
+      }
+
+      /*for(var x = 0; x<=64; x++){
+      potencia = potencia**i; //elevar a 2, 4, 6, 8 ... 2ª6  
+      document.write(potencia)
+    }  
+
+    for (var x = 0; x <= 64; x++) {
+    var i = 1; 
+
+    if(x%2==0){ //multiplos de 2 
+      document.write(x + "<br>");
+    }
+  }
+    */
+    }
+  }
+  //volca();
+
+  function matriu8x8() {
+    for (var i = 0; i < 8; i++) {
+      for (var x = 0; x < 8; x++) {
+        if (i == x) {
+          document.write("*");
+        } else if (i % 2 == 0 && x % 2 == 0) {
+          document.write("*");
+        } else if (i % 2 == 1 && x % 2 == 1) {
+          document.write("*");
+        } else {
+          document.write("_");
+        }
+      }
+      document.write("<br>");
+    }
+  }
+
+  matriu8x8();
+
+  function trinagle() {
+
+    //la linea central es impar 
+    // numero%2!= 0 --> es impar 
+    //j = impar 
+    /*
+    i->j 1/2
+    j<-i 1/2 
+    */
+
+    /* 1 
+      232
+     34543
+    4567654
+   567898765
+  67890109876
+ 7890123210987
+890123454321098
+90123456765432109
+0123456789876543210
+    */
+
+    /*
+
+    for (var i = 1; i < 10; i++) { 
+      document.write("&nbsp");
+      for (var j = 0; j < 10-i; j++) {
+        
+        if (i % 1 == 0) { //multiplo de 1 
+          document.write(i + j);
+        } else {
+          document.write("&nbsp");
+        }
+      } document.write("<br>");
+    } 
+    
+    */
+
+    for (var i = 0; i < 10; i++) {
+      for (var j = 1; j <= 9 - i; j++) {
+        document.write("&nbsp");
+      }
+    }
+  }
+
+  trinagle();
+
+
+
+
+
+
+
+
+
+
+
+
+  //triangle bonic i%10
+
+  function trianglebonic() {
+    for (var i = 0; i < 10; i++) {
+      for (var j = 1; j <= 9 - i; j++) {
+        document.write("&nbsp");
+      }
+      for (var j = 1; j <= 1; j++) {
+        document.write((i + j) % 10);
+      }
+      for (var j = i; j >= 1; j--) {
+        document.write((i + j) % 10);
+      }
+    }
+    document.write("<br>");
+  }
+
+    //trianglebonic();
+</script>
+
+</html>

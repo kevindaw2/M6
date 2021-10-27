@@ -1,0 +1,57 @@
+<html>
+
+<body>
+	<h1>
+		Exercici localstorage
+	</h1>
+
+    <p id="username">nombre:</p>
+    <p id="lastname">apellido:</p>
+    
+    <button type="button" onclick="login()">LOGIN</button>
+    <button type="button" onclick="setColor()">CANVIAR COLOR</button>
+	
+
+	<script type="text/javascript">
+
+        //vars
+		var nombre = localStorage.getItem("nombre");
+        var apellido = localStorage.getItem("apellido");	
+        var color=localStorage.getItem("color");
+
+        if(nombre == null & apellido == null){ //if null
+			document.write(localStorage.getItem("nombre"));
+            document.write(localStorage.getItem("apellido"));
+        } else {
+            document.getElementById("username").innerHTML = "nombre: " + nombre;
+            document.getElementById("lastname").innerHTML = "apellido: " + apellido;
+        }
+
+		if(color) { //if null
+            document.body.style.backgroundColor=color;
+        }
+			
+		function login() {
+						
+			var nombre = window.prompt("nombre:");
+			var apellido = window.prompt("apellido:");
+			
+			localStorage.setItem("nombre", nombre);
+			localStorage.setItem("apellido", apellido);
+			window.location.reload()
+		}
+
+		function setColor() {
+			var colors = ["Tomato","LightGreen","LightBlue","LightYellow"];
+			var color = window.prompt("escull el color de fons\n(1=vermell;2=verd;3=blau;4=groc):");
+			
+			if(color>=1 &&color<=4)
+				localStorage.setItem("color",colors[color-1]);
+			window.location.reload()
+		}
+		
+	</script>
+    
+	
+</body>
+</html>

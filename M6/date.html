@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <title>Date</title>
+  </head>
+  <body>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <div id="clock">
+        
+    </div>
+  </body>
+  <script type="text/javascript">
+
+    function clock () {
+        var actual = moment().format('MMMM Do YYYY, h:mm:ss a'); // October 27th 2021, 5:50:03 pm
+        document.getElementById("clock").innerHTML = actual;
+    }
+    
+    setInterval(clock, 1000); 
+
+    function showTime() {
+      var date = new Date();
+      var h = date.getHours(); // 0 - 23
+      var m = date.getMinutes(); // 0 - 59 
+      var s = date.getSeconds(); // 0 - 59
+      var session = "AM";
+
+      if (h == 0) { //a partir de 0 pasa a 12
+        h = 12;
+      }
+
+      if (h > 12) { // a partir de 12 pasa a 0
+        h = h - 12;
+        session = "PM";
+      }
+
+      h = h < 10 ? "0" + h : h; //01 02 03 04 05
+      m = m < 10 ? "0" + m : m; //11 12 13 14 15
+      s = s < 10 ? "0" + s : s; //21 22 23 24 25
+
+      var time = h + ":" + m + ":" + s + " " + session;
+      document.getElementById("MyClockDisplay").innerText = time;
+      document.getElementById("MyClockDisplay").textContent = time;
+
+      setTimeout(showTime, 1000);
+    }
+
+    showTime();
+  </script>
+</html>

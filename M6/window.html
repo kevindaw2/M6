@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <title>Date</title>
+  </head>
+  <body>
+    
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <div id="clock">
+        <p id="temporizador"></p>
+        <button type="button" onclick="closeWindow()">close window</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+
+    /*
+    window -> open, resize, 
+    conseguir que una ventana se mueva alrededor de la pantalla
+    */
+
+    for(var i=10; i >= 1; i--) {
+        document.getElementById("temporizador").innerText = i; 
+    }
+
+    function closeWindow() {
+        window.close(); 
+    }
+
+    setInterval(closeWindow, 100000);
+
+  </script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <!-- WINDOW, COOKIES & LOCALESTORAGE -->
+  <!-- objecte Date -->
+  <!-- js timing events -->
+  
+  <body>
+    <p id="cookies">cookies:</p>
+    <p id="username">nombre:</p>
+    <p id="lastname">apellido:</p>
+    <button type="button" onclick="setCookie()">LOGIN</button>
+    <button type="button" onclick="setColor()">PREFERENCES</button>
+    <br />
+  </body>
+
+  <script type="text/javascript">
+   
+    /*
+     const d = new Date ();
+    //d.setUTCFullYear(2031); 
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let datexpires = d.toUTCString(); //expires = Thu, 18 Dec 2013 12:00:00 UTC; 
+    */
+   
+    document.cookie = "expires=";
+  
+    colors = ["red", "yellow", "green", "blue", "white"]; 
+    var color = readCookie("color"); //0-1-2-3-4
+    var colorNumber = parseInt(color);
+   
+    for (var i=1; i<colors.length; i++) { 
+      if(i == colorNumber){ //if user enter 1, rest 1 to 0 index position array 
+        colorArray = colors[i].toString(); //"green"
+        document.body.style.backgroundColor = colorArray;
+      }
+    }
+
+    var nombreCookie = readCookie("nombre");
+    document.getElementById("username").innerHTML = "nombre: " + nombreCookie;
+
+    var apellidoCookie = readCookie("apellido");
+    document.getElementById("lastname").innerHTML = "apellido: " + apellidoCookie;
+
+    var cookies = document.cookie;
+    document.getElementById("cookies").innerHTML = "cookies:" + cookies;
+
+    /*
+    Un prompt pide el nombre y guarda la cookie, al darle a login cambia, al cerrar el navegador persiste
+   */
+
+    function readCookie(nombreCookie) {
+
+      var nameEQ = nombreCookie + "=";
+      var ca = document.cookie.split(";");
+
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) {
+          return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+      }
+      return null;
+    }
+
+    function setCookie() {
+      var nombre = prompt("Indotruce tu nombre");
+      document.cookie = "nombre=" + nombre + ";";
+
+      var apellido = prompt("Introduce tu apellido");
+      document.cookie = "apellido=" + apellido + ";";
+      document.cookie = "expires=";
+      window.location.reload();
+    }
+
+    function setColor() {
+      var color = prompt(
+        "Escoge un color: 0--->Vermell 1--->groc 2--->verd 3--->blau"
+      );
+      var colorNumber = parseInt(color);
+      document.cookie = "color=" + color + ";";
+      window.location.reload();
+    }
+
+  </script>
+</html>
