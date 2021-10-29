@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Titol Interval</title>
+</head>
+
+<body>
+    <div id="titolInterval">
+        <h1>Titol Interval</h1>
+    </div>
+
+    <script type="text/javascript">
+
+        var titolInterval = document.getElementById("titolInterval"); //titol as var 
+
+        function moveTitol() {
+
+            let result = '';
+            let i = 0;
+
+            do {
+                i = i + 1;
+                result = result + i;
+            } while (i < 5);
+
+            n = 0;
+
+            while (n < 100) {
+                n++;
+                titolInterval.style.marginLeft = n + "px";
+            }
+        }
+
+        setInterval(function () { moveTitol(); }, 2000);
+
+
+    </script>
+
+</body>
+
+</html>

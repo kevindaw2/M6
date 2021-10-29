@@ -1,0 +1,8 @@
+setInterval
+
+4 textbox on es pugui escriure 
++ 1 boto obrira 4 finestres noves amb el google amb la cerca (del text box)
+
+titol que es vagi movent en forma de banner 
+data actual actualitzant (rellotge)
++ cookies (background color)

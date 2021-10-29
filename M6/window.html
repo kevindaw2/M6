@@ -17,7 +17,17 @@
     </div>
   </body>
   <script type="text/javascript">
-    //GLOBAL VARS
+
+  /* 
+  es vol obrir una finestra de 400x400 
+  rotar cap a l'esquerra 10px(button), cap a la dreta 10px (button)
+  */
+
+  /*
+  cada segon desplacem el titol 
+  */
+
+  //GLOBAL VARS
 
     var myWindow;
 
@@ -47,6 +57,7 @@
 
       myWindow.moveBy(10, 0);
       window.focus(); 
+      //window.close(myWindow);
     }
 
     function rotateWindow() {
@@ -54,7 +65,7 @@
 
       for (var i = 0; i < 6; i++) {
         myWindow = window.open(
-          "https://www.w3schools.com",
+          "http://127.0.0.1:5500/date.html",
           "",
           "width=450, height=350"
         );
@@ -70,18 +81,19 @@
     setInterval(moveWindowToRight, 10000); //cada x tiempo abre una ventana en una nueva posicion cada 10sc
 
     /*
-    window -> open, resize, resizeTo, resizeBy, moveBy, moveTo
+    window -> open, resize, resizeTo, resizeBy, moveBy, moveTo, screenLeft, screenTop
     conseguir que una ventana se mueva alrededor de la pantalla
+    sinus, cosinus, movimiento circular 
     */
 
     for (var i = 10; i >= 1; i--) {
-      document.getElementById("temporizador").innerText = i;
+      //document.getElementById("temporizador").innerText = i;
     }
 
     function closeWindow() {
       window.close();
     }
 
-    setInterval(closeWindow, 100000);
+    setInterval(moveWindowToRight, 1000);
   </script>
 </html>
