@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Examen UF1</title>
+</head>
+<style>
+    #banner {
+        text-align: center;
+        position: relative;
+        width: 100px;
+        height: 25px;
+        background-color: coral;
+        color: white;
+    }
+</style>
+
+<body>
+
+    <br></br>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <br></br>
+
+    <div id="inputLinks">
+        <form id="form-id">
+            <label for="link-1">Link1:</label>
+            <input type="text" id="link-1"><br></br>
+            <label for="link-2">Link1:</label>
+            <input type="text" id="link-2"><br></br>
+            <label for="link-3">Link1:</label>
+            <input type="text" id="link-3"><br></br>
+            <label for="link-4">Link1:</label>
+            <input type="text" id="link-4"><br></br>
+            <button id="button-id" onclick="yourLink()">submit</button>
+        </form>
+    </div>
+    <br></br>
+    <button id="move-window" onclick="moveWindow()">Move Window</button>
+    <button id="colorCookies" onclick="setColor()">Background Color</button>
+    <br></br>
+    <div id="banner">BANNER</div>
+
+
+    <script type="text/javascript">
+
+
+        function yourLink() {
+            var link1 = document.getElementById("link-1").value; //google.com
+            var link2 = document.getElementById("link-2").value;
+            var link3 = document.getElementById("link-3").value;
+            var link4 = document.getElementById("link-4").value;
+
+            var locs = [link1, link2, link3, link4]
+            for (let i = 0; i < locs.length; i++) {
+                window.open(locs[i])
+            }
+        };
+
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59 
+            var s = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if (h == 0) { //a partir de 0 pasa a 12 am
+                h = 12;
+            }
+
+            if (h > 12) { // a partir de 12 pasa a 0 pm
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = h < 10 ? "0" + h : h; //01 02 03 04 05
+            m = m < 10 ? "0" + m : m; //11 12 13 14 15
+            s = s < 10 ? "0" + s : s; //21 22 23 24 25
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+        } setInterval(showTime, 1000);
+
+        var margin = 0;
+
+        function moveTitle() {
+            margin += 10; //aumenta de 10 en 10px
+            document.getElementById("banner").style.left = margin + "px";
+        } setInterval(moveTitle, 1000);
+
+        //moveWindow
+        var myWindow;
+        var valor = 0;
+
+        function moveWindow() {
+            valor = valor + 0.04; //movimiento corto
+            posicion = Math.sin(valor);
+            posicioncos = Math.cos(valor);
+
+            posicion1 = (posicion * 10);
+            posicion2 = (posicioncos * 10);
+
+            myWindow = window.open("", "myWindow", "width=200, height=100");
+            myWindow.document.write("<p>This is 'myWindow'</p>");
+            myWindow.moveBy(posicion1, posicion2); //x horizontal px, y vertical px
+            myWindow.focus();
+
+            setTimeout('moveWindow()', 10);
+        }
+        //COOKIES
+        function readCookie(nombreCookie) {
+
+            var nameEQ = nombreCookie + "=";
+            var ca = document.cookie.split(";");
+
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) {
+                    return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
+            }
+            return null;
+        }
+
+        //setColor
+        colors = ["red", "yellow", "green", "blue"];
+        var color = readCookie("color");
+        var colorNumber = parseInt(color);
+
+        for (var i = 0; i < colors.length; i++) {
+            colorNumber - 1; 
+            if (i == colorNumber) { //if user enter 1, rest 1 to 0 index position array 
+                colorArray = colors[i].toString(); //"green"
+                document.body.style.backgroundColor = colorArray;
+            }
+        }
+
+        function setColor() {
+            var color = prompt(
+                "Escoge un color: 0--->Vermell 1--->groc 2--->verd 3--->blau"
+            );
+            var colorNumber = parseInt(color);
+            document.cookie = "color=" + color + ";";
+            window.location.reload();
+        }
+
+    </script>
+
+</body>
+
+</html>
