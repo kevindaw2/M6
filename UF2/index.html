@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CLASS JS</title>
+    <style>
+
+        body {
+            align-content: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #test1 {
+            margin-left: 6.5rem;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="test1">0s</div>
+    <button onclick="rellotge.restartTimer()">start timer</button>
+    <button onclick="rellotge.stopTimer()">stop timer</button>
+    <button onclick="rellotge.initTimer()">restart to 0</button>
+    <div id="execute"></div>
+</body>
+
+<script src="rellotge.js"></script>
+<script type="text/javascript">
+
+    const rellotge = new Rellotge(0, true);
+
+    setInterval(function () {
+        document.getElementById("test1").innerHTML = rellotge.getTimer() + "s";
+    }, 1000);
+
+    document.write(rellotge.execute());
+
+
+</script>
+
+</html>
