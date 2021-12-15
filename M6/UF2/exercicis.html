@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UF2</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+    //class rellotge
+
+        class Rellotge {
+            /*
+            rellotge es posa en marcha
+            getTime retorna el temps en segons desde que es va crear
+            stopTime para el rellotge i guarda els segons que ha estat actiu
+            startTime torna a poser en marcha el rellotge
+            */
+
+            constructor(time) { //param time
+                this.time = time;
+            }
+
+            //GETTERS
+            getTime() { //retorna el temps en segons desde q es va crear
+                return this.startTime(); 
+            }
+
+            //METHODS
+            stopTime() {
+                var stopTime = new Date().getTime() / 1000; 
+                document.write("stoping time...<br>");
+                var totalTime = this.time - stopTime; 
+                return this.time = time - stopTime; 
+            }
+
+            startTime() {
+
+                document.write("starting new time...<br>");
+                return this.time = time; 
+            }
+
+            execute() { }
+        }
+
+        var date = new Date();
+        var time = date.getTime();  
+        var clock = new Rellotge(time);
+
+        document.write("temps inicial: " + clock.getTime() / 1000 + "<br>"); 
+        document.write("temps total fucionant: " + clock.stopTime()); 
+
+
+    </script>
+</body>
+
+</html>
