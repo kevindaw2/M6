@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegexExp</title>
+</head>
+
+<body>
+    <h2>RegexExpressions</h2>
+</body>
+
+</html>
+
+<script>
+    /*
+    ------------------------------------
+    ^ => start line
+    w => any word
+    d => any digits 
+    $ => end line 
+    ------------------------------------
+    nºtlf : d-\d{3}-\d $ 
+    let re = new RegExp('ab+c', 'i');
+    let numberRegex = new RegExp('(^[0-9]{5})$'); //del 0-9 5 digitos
+    let tlfRegex = new RegExp('^(8,9)([0-9]{2}-/[0-9]{3}-/[0-9]{2}-/[0-9]{2})'); //numero de telefono con prefijo y guion el primero 8 o 9
+    let tlfRegex2 = new RegExp('([0-9]{9})');
+    let tlfRegexInternational =  new regex('(^(+[0-9]{2}/[0-9]{7}))'); 
+    let userNameRegex = new RegExp('([A-Za-z0-9-]+{4})');
+    let realNumberRegex = new RegExp('(-[0-9]{5})');
+    let isbnRegex = new RegExp('(^[0-9]{3}/[0-9]{1}/[0-9]{2}/[0-9]{6}/[0-9]{1})');   
+    let seguretatSocialRegex = new RegExp('(^[0-9]{2}/-[0-9]{9})');
+    let dateTimeRegex = new RegExp('d{2}:\d{2}\:{d{2}}'); 
+    let validateURLRegex = new RegExp('(?(^[http])|(^[https])|(^[www]))'); 
+    */
+
+    let r = /ab+c/i; //literal 
+    let regex = new RegExp(/ab+c/, 'i');  //regular literal 
+    let emailAddressRegex = new RegExp('\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}');
+    alert(emailAddressRegex.test('kevin@nowordlost.com'));
+
+    //alert(tlfRegex.test('93-123-11-33'));
+    //alert(numberRegex.test('47600')); 
+    //alert(seguretatSocialRegex.test('01-123456789')); 
+
+</script>
