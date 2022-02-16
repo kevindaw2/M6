@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validació Formularis</title>
+</head>
+
+<style>
+    #form {
+        width: 200px;
+        display: inline-block;
+    }
+
+    #form button {
+        margin-top: 10px;
+    }
+
+    .error {
+        border: 2px solid #f39389;
+        padding: 10px;
+        background-color: #fbd8da;
+        color: #3b3c40
+    }
+</style>
+
+<body>
+    <h4>Validació de formularis</h4>
+    <form method="post" id="form">
+        Nom: <input type="text" name="nom" id="nom"><p id="error"></p>
+        Cognom: <input type="text" name="cognom" id="cognom">
+        Telefon: <input type="tel" name="tlf" id="tlf">
+        Email: <input type="email" name="email" id="email" value="">
+        Password: <input type="password" name="" id="password">
+        <button type="submit">Validar</button>
+    </form>
+</body>
+<script src="main.js"></script>
+
+</html>
