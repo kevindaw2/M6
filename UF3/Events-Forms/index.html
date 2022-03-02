@@ -1,61 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <title>Events</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
-    <style>
-        *{
-            margin-bottom: 5px;
-        }
-
-        #section {
-            width: 350px;
-            height: 175px;
-            border: thin solid silver;
-        }
-
-        #tecla {
-            width: 350px;
-            height: 60px;
-            border: thin solid black;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo de validación Javascript</title>
+    <script src="jquery-3.6.0.min.js"></script>
 </head>
 
-<body id="body">
-    <h1>Events Handler</h1>
-    <button id="button">Clicka</button>
-    <div id="text"></div>
-    <button onclick="showTime()">show date</button>
-    <div id="demo"></div>
+<body>
+    <div id="paragraphs">
+        <p id="first">1- Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias neque molestias sed officia quia
+            sit facilis voluptate iste impedit quasi numquam quo dolores magnam, corrupti amet optio quod? Aliquid,
+            ipsum.</p>
 
-    <button onclick="showContent()">Mostrar</button>
-    <button onclick="hideContent()">Ocultar</button>
-    <div id="section">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione ducimus rem vel assumenda eveniet sit doloremque repellendus cumque dolor, voluptatibus itaque, sequi minus. Suscipit culpa, vero nobis numquam modi cumque!
+        <p id="second">2- Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit earum amet dolore velit
+            deserunt
+            illum consectetur, maiores unde a laudantium corrupti tenetur vero temporibus odio nihil optio nisi repellat
+            aspernatur!</p>
+        <p id="third">3- Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus eum consequuntur
+            laboriosam consectetur perferendis atque nemo aliquam consequatur ab aperiam sit cupiditate odit natus
+            maiores, optio perspiciatis illo ad officiis?</p>
     </div>
-    <div id="tecla"></div>
-    
-    <a href="" onclick="mostrarSection()">Mostrar</a>
-    <a href="" onclick="ocultarSection()">Ocultar</a>
-    <section id="1">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque nihil nisi, ut esse nam expedita consequatur architecto dolorum aspernatur ipsum fugiat fuga voluptatum, exercitationem ducimus, ullam impedit quo consectetur perferendis?
-    </section>
-    <a href="" onclick="mostrarSection()">Mostrar</a>
-    <a href="" onclick="ocultarSection()">Ocultar</a>
-    <section id="2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quaerat ducimus ex fugit accusantium reiciendis doloribus soluta voluptates eveniet adipisci, debitis animi fuga quidem quia, ipsa fugiat! Voluptate, obcaecati non!
-    </section>
-    <a href="" onclick="mostrarSection()">Mostrar</a>
-    <a href="" onclick="ocultarSection()">Ocultar</a>
-    <section id="3">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum officia eveniet molestias illum ab distinctio obcaecati illo eligendi suscipit. Dignissimos, iure sit in quae cum a facere officia minus maxime?
-    </section>
+    <div>
+        <button onclick="addText()">ad text</button>
+    </div>
 
+    <script>
+
+        /* EXAMEN UF3: 
+           -Esdeveniments
+           -Formulari
+           -Crear elements DOM
+       */
+
+        $('#first').click(function () {
+            alert("JQUERY");
+        });
+
+        $('#third').click(function () { alert($('#second').text()) });
+        $('#addText').click(function(){ $("#paragraphs").add("<p>New paragraph</p>")}); 
+
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.getElementById('mi_formulario').addEventListener('submit', manejadorValidacion)
+        });
+
+        function addText(){
+            $('#third').add('<p id="four">New text added in new p</p>').appendTo($("#paragraphs")); 
+        }
+
+        function manejadorValidacion(e) {
+            e.preventDefault();
+            var msg = document.getElementById('msg');
+            msg.innerText = '';
+            if (this.querySelector('[name=nombre]').value == '') {
+                console.log('El nombre está vacío');
+                msg.innerText = 'Debes escribir un nombre';
+                return;
+            }
+            if (!validateEmail(this.querySelector('[name=email]').value)) {
+                console.log('El email no es válido');
+                msg.innerText = 'Debes escribir un email válido'; return;
+            }
+            this.submit();
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{ 1, 3 } \])| (([a - zA - Z\-0 - 9] +\.) +[a - zA - Z]{ 2,})) $ /;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
 </body>
 
 </html>
