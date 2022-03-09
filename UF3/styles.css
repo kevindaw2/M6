@@ -1,0 +1,74 @@
+.formulario_correcto {
+    color: #1ed12d; 
+    opacity: 1;
+}
+
+.formulario_incorrecto {
+    color: #bb2929;
+    opacity: 1;
+}
+
+.formulario_input_error {
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+}
+
+.formulario_input_error-activo {
+    display: block;
+}
+
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .list {
+    width: 500px;
+  }
+  
+  .list  {
+    padding: 20px;
+    font-size: 18px;
+    display: block;
+    background: #535e66;
+    color: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .3s ease all;
+  }
+  
+  .list a:hover {
+    background: #E86B19;
+  }
+  
+  .list a i {
+    display: none;
+  }
+  
+  .list a.activo i {
+    display: block;
+  }
+  
+  .btn-add {
+    background: #E86B19;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    margin-bottom: 20px;
+    transition: .3s ease all;
+  }
+  
+  .btn-add:hover {
+    background: #da6315;
+  }
