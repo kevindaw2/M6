@@ -22,9 +22,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
             </tr>
         </thead>
         <tbody>
@@ -32,48 +31,73 @@
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
             </tr>
         </tbody>
     </table>
 
     <script>
+
+        //peticions ajax, selec artisa, ajax album y cancines 
         //https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
         const APIKEY = "35b273bcb1337c4063edb350b1bfb2e6";
         const APIURL = 'https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=' + APIKEY;
+        const AUTHURL = 'https://jsonplaceholder.typicode.com/users';
 
-        var wind = [];
+        window.onload = function () {
+            console.log("onload");
+            getData();
+        }
 
-        function getLatLon() {
-            fetch(APIURL) // Exito
-                .then((response) => { response.json() })
-                .then((json) => { console.log(json) })
+        function getData() {
+            fetch(AUTHURL) // Exito
+                .then((response) => {
+                    return response.json();
+                })
                 .then((data) => {
-                    console.log('data');
+
+                    /*
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    */
+
                     console.log(data);
-                    let weathers = data;
+                    let weathers = data; //Array
+                    let order = 0; 
+
+                    let table = document.createElement('table');
+                    let thead = document.createElement('thead');
+                    let trThead = document.createElement('tr');
+
+                    thead.appendChild(trThead);
+
+                    table.className = 'table';
+                    document.body.appendChild(table);
+
+                    table.appendChild(thead);
+                    thead.appendChild(trThead);
+
                     weathers.map(function (weather) {
-                        let th = document.createTextNode('th');
+                        let tr = document.createElement('tr');
+                        let th = document.createElement('th');
+
+                        th.setAttribute("scope", "row"); //row-col display 
                         let td = document.createElement('td');
 
+                        table.appendChild(tr);
+                        tr.appendChild(th);
+
                         th.innerHTML = `${weather.name}`;
-                        td.innerHTML = `${weather.timezone}`;
+                        td.innerHTML = `${weather.username}`;
                     });
                 })
                 .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
         }
-        getLatLon();
+
     </script>
 </body>
 
