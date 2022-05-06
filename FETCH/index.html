@@ -77,6 +77,8 @@
         const ALBUMS = document.getElementById("albums");
         const SONGS = document.getElementById("songs");
 
+        const SELECTEDARTIST = "";
+
         window.addEventListener("load", function () {
             getArtists();
             getWeather();
@@ -139,6 +141,8 @@
         }
 
         function loadAlbums(artist) {
+            //url: "http://localhost/AJAX/musicdb.php?artist=&album=John%20Scofield%20Live"
+            console.log(artist);
             fetch(MUSICURL + '?artist=' + artist)
                 .then((response) => {
                     return response.json();
@@ -153,8 +157,8 @@
         }
 
         function loadSongs(album) {
-            album = "";
-            fetch(MUSICURL + '?artist=' + "Abba" + '&album=Waterloo')
+            console.log(album);
+            fetch(MUSICURL + '?artist=' + SELECTEDARTIST + '&album=' + album)
                 .then((response) => {
                     console.log(response);
                     return response.json();
