@@ -15,115 +15,161 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-    <script src="jquery-3.6.0.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <div class="flex align-content-center">
-        <button id="button">
-            get data
-        </button>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <img src="images/logo.png" alt="logo" width="200" height="100"
+                    class="d-inline-block align-text-top p-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="">Inicio</a>
+                </div>
+            </nav>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <p class="fs-2">Artistas</p>
+                <ul class="list-group" id="artists"></ul>
+            </div>
+            <div class="col">
+                <p class="fs-2">Álbumes</p>
+                <ul class="list-group" id="albums"></ul>
+            </div>
+            <div class="col">
+                <p class="fs-2">Canciones</p>
+                <ul class="list-group" id="songs"></ul>
+            </div>
+        </div>
+        <hr class="bg-danger border-2 border-top border-danger">
+      
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <img class="mx-3" src="" width="125" height="100" id="card-image">
+                    <div class="card-body">
+                        <h5 class="card-title" id="card-title"></h5>
+                        <p class="card-text" id="card-text"></p>
+                        <p class="card-text"><small class="text-muted" id="card-text-muted"></small></p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <div class="row mt-5">
+            <footer class="py-3">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+                </ul>
+                <p class="text-center text-muted">© 2022 Company, Inc</p>
+            </footer>
+        </div>
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Username</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
-        </tbody>
-    </table>
 
     <script>
 
-        //peticions ajax, selec artisa, ajax album y cancines 
-        //https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
-
-        const APIURL = 'https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=' + APIKEY;
+        //const APIURL = 'https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=' + APIKEY;
         const AUTHURL = 'https://jsonplaceholder.typicode.com/users';
-        const APIMUSICDB = '\musicdb.php';
+        const MUSICURL = "musicdb.php";
 
+        const ARTISTS = document.getElementById("artists");
+        const ALBUMS = document.getElementById("albums");
+        const SONGS = document.getElementById("songs");
 
-        function getArtist() {
-            var artist = [];
-            $.get("./musicdb.php?artist=", function (data, status) {
-                artist = data.artist;
-                alert("Data: " + data + "\nStatus: " + status);
-            });
+        window.addEventListener("load", function () {
+            getArtists();
+            getWeather();
+            setTimeout(getWeather, 500000); 
+        });
+
+        ARTISTS.addEventListener("click", function (event) { loadAlbums(event.target.innerText); });
+        ALBUMS.addEventListener("click", function (event) { loadSongs(event.target.innerText); });
+
+        function changeColor(obj) {
+            obj.style.backgroundColor = "purple";
+            obj.style.color = "white";
         }
 
-        window.onload = function () {
-            console.log("onload");
-            //getData();
-            getArtist();
+        function restoreColor(obj) {
+            obj.style.backgroundColor = "white";
+            obj.style.color = "black";
         }
 
-        function getAllArtist() {
-            var arrayOfArtist = [];
-            fetch(APIMUSICDB, {
-                method: "get"
-            })
-                .then((response => {
-                    return response;
-                }))
-                .then((data => {
-                    arrayOfArtist = data;
-                }))
+        function changeSelected(obj) {
+            obj.style.backgroundColor = "blue";
+        }
+
+        function getWeather() {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+                    'X-RapidAPI-Key': 'ddeca705bcmsh8a99524585ff388p186446jsnfd31d4d0a87b'
+                }
+            };
+
+            fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=Paris', options)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    let src = data.current.condition.icon; 
+                    document.getElementById("card-image").src = src;
+                    document.getElementById("card-title").innerText = data.location.name + " " + data.current.feelslike_c + "ºC";
+                    document.getElementById("card-text").innerText = data.current.condition.text; 
+                    document.getElementById("card-text-muted").innerText = "Last update "  + data.current.last_updated; 
+                    console.log(data);
+                })
+                .catch(err => console.log('Solicitud fallida', err));   
+                 
+        }
+
+        function getArtists() {
+            fetch(MUSICURL)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    let options = "";
+                    data.forEach(el => options += `<li onclick="changeSelected(this)" onmouseover="changeColor(this)" onmouseout="restoreColor(this)" class="list-group-item">${el}</li>`);
+                    ARTISTS.innerHTML = options;
+                })
                 .catch(err => console.log('Solicitud fallida', err));
         }
 
-        function getData() {
-            fetch(AUTHURL) // Exito
+        function loadAlbums(artist) {
+            fetch(MUSICURL + '?artist=' + artist)
                 .then((response) => {
                     return response.json();
                 })
                 .then((data) => {
                     console.log(data);
-                    let weathers = data; //Array
-                    let order = 0;
-
-                    createTable();
-                    weathers.map(function (weather) {
-                        let tr = document.createElement('tr');
-                        let th = document.createElement('th');
-
-                        th.setAttribute("scope", "row"); //row-col display 
-                        let td = document.createElement('td');
-
-                        table.appendChild(tr);
-                        tr.appendChild(th);
-
-                        th.innerHTML = `${weather.name}`;
-                        td.innerHTML = `${weather.username}`;
-                    });
+                    let options = "";
+                    data.forEach(el => options += `<li onmouseover="changeColor(this)" onmouseout="restoreColor(this)" class="list-group-item">${el}</li>`);
+                    ALBUMS.innerHTML = options;
                 })
-                .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
+                .catch(err => console.log('Solicitud fallida', err));
         }
 
-        function createTable() {
-            let table = document.createElement('table');
-            table.className = 'table';
-
-            let thead = document.createElement('thead');
-            let trThead = document.createElement('tr');
-            let thThead = document.createElement('th');
-
-            thThead.setAttribute("scope", "col");
-
-            //appendings
-            thead.appendChild(trThead);
-            trThead.appendChild(thThead);
-            document.body.appendChild(table);
-            table.appendChild(thead);
-            thead.appendChild(trThead);
+        function loadSongs(album) {
+            album = "";
+            fetch(MUSICURL + '?artist=' + "Abba" + '&album=Waterloo')
+                .then((response) => {
+                    console.log(response);
+                    return response.json();
+                })
+                .then((data) => {
+                    let options = "";
+                    data.song.forEach(song => {
+                        for (let key in song) {
+                            console.log(`${key}: ${song[key]}`);
+                            options += `<li onmouseover="changeColor(this)" onmouseout="restoreColor(this)" class="list-group-item">${key}: ${song[key]}</li>`;
+                        }
+                    });
+                    SONGS.innerHTML = options;
+                })
+                .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
         }
 
     </script>
